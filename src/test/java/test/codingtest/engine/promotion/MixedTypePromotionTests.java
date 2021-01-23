@@ -58,5 +58,19 @@ public class MixedTypePromotionTests {
 		
 	}
 	
+	@Test
+	void testapplyPromotion_CartContainsMixOfPromotionalAnNonPromotionalItems() {
+		// Given
+		List<CheckoutItem> cartItemDetails = new ArrayList<CheckoutItem> ();
+		cartItemDetails.add(new CheckoutItem(itemC, 2));
+		cartItemDetails.add(new CheckoutItem(itemD, 2));
 
+		// When
+		List<CheckoutItem> appliedPromoItems = mixedTypePromotion.applyPromotion(cartItemDetails);	
+		
+		// Verify
+		assertEquals(30.00, appliedPromoItems.iterator().next().getPromotionalTotal());
+		assertEquals(20.00, appliedPromoItems.iterator().next().getNonpromotionalTotal());
+		
+	}
 }
