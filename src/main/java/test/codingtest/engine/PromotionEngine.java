@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +76,23 @@ public class PromotionEngine {
 		}
 		
 		LOGGER.debug("Found cart promotions " + checkoutItemsAfterPromotionApplied.size());
+		//From checkoutItemsAfterPromotionApplied, get promotionalTotal and nonpromo total
+		for (Entry<Item, CheckoutItem> entry : cartItemsMap.entrySet()) {
+			
+			CheckoutItem itemDetails = entry.getValue();
+			Optional<CheckoutItem> promoItem = checkoutItemsAfterPromotionApplied.stream()
+							.filter(c -> c.getItem().getId() == itemDetails.getItem().getId())
+							.findFirst();
 
+			if (promoItem.isPresent()){
+				CheckoutItem checkoutItem = promoItem.get();
+				promoTotalPrice += checkoutItem.getPromotionalTotal();
+				nonpromoTotalPrice += checkoutItem.getNonpromotionalTotal();
+			}
+			else{
+				nonpromoTotalPrice += itemDetails.getItem().getPrice() * itemDetails.getCount();
+			}
+		}
 		
 		billTotal = promoTotalPrice + nonpromoTotalPrice;
 		return billTotal;
