@@ -23,9 +23,17 @@ public class MixedTypePromotion implements Promotion {
 		super();
 		this.items = items;
 		this.promotionalPrice = promotionalPrice;
-		quantity = 1;
+		quantity = 1;	//As per assumption quantity is always set to 1
 	}
 
+	
+	/**
+	 * Applies promotions on cart items which matches with all items of the MixedTypePromotion.items
+	 * Updates promotional and non promotional totals
+	 * Returns List<CheckoutItem> with promotional and non promotional totals set
+	 * 
+	 * Assumption - Item Quantity is always set to 1
+	 */
 	public List<CheckoutItem> applyPromotion(List<CheckoutItem> itemDetails) {
 		
 		if (itemDetails.isEmpty() || this.items == null || this.items.isEmpty() || this.promotionalPrice == 0){
@@ -33,9 +41,44 @@ public class MixedTypePromotion implements Promotion {
 		}
 		
 		LOGGER.debug("Promotion items " + items.size() + " promotionalPrice " + promotionalPrice);
+		List<CheckoutItem> promotionToApplyItemDetails = new ArrayList<CheckoutItem>();
 		List<CheckoutItem> promotionToAppliedItemDetails = new ArrayList<CheckoutItem>();
 		
-
+		boolean allItemsExists = true;
+		
+		//Find if all promotional items exists in the cart
+		for (Item promoItem : items) {
+			
+			Optional<CheckoutItem> promotionalItemList = itemDetails.stream()
+																	.filter(d -> d.getItem().getId() == promoItem.getId() )
+																	.findFirst();
+			if (!promotionalItemList.isPresent()){
+				allItemsExists = false;
+				break;
+			}
+			else{
+				promotionToApplyItemDetails.add(promotionalItemList.get());
+			}
+		}
+		
+		//We will apply promotional price only when all items exits in the cart
+		if (allItemsExists){
+			
+			boolean promotionalPriceApplied = false;
+			
+			for (CheckoutItem checkoutItem : promotionToApplyItemDetails) {
+				if (!promotionalPriceApplied){
+					checkoutItem.setPromotionalTotal(promotionalPrice);
+					promotionalPriceApplied = true;
+				}
+				//Remaining items will be charged at non promotional rate
+				if (checkoutItem.getCount() > 1){
+					checkoutItem.setNonpromotionalTotal((checkoutItem.getCount() - 1) * checkoutItem.getItem().getPrice());
+				}
+				promotionToAppliedItemDetails.add(checkoutItem);
+			}
+			
+		}
 		
 		return promotionToAppliedItemDetails;
 	}

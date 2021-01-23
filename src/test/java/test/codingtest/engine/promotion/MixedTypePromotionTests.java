@@ -43,5 +43,20 @@ public class MixedTypePromotionTests {
 		assertEquals(Collections.EMPTY_LIST, appliedPromoItems);
 	}
 	
+	@Test
+	void testapplyPromotion_CartContainsOnlyPromotionalItems() {
+		// Given
+		List<CheckoutItem> cartItemDetails = new ArrayList<CheckoutItem> ();
+		cartItemDetails.add(new CheckoutItem(itemC, 1));
+		cartItemDetails.add(new CheckoutItem(itemD, 1));
+
+		// When
+		List<CheckoutItem> appliedPromoItems = mixedTypePromotion.applyPromotion(cartItemDetails);	
+		
+		// Verify
+		assertEquals(30.00, appliedPromoItems.iterator().next().getPromotionalTotal());
+		
+	}
+	
 
 }
