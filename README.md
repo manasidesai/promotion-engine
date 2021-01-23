@@ -1,6 +1,6 @@
 # promotion-engine
 
-This ia a spring boot application for the simple promotion engine. The promotion engine calculates the total order value after applying promotions on the cart items.
+This is a spring boot application for the simple promotion engine. The promotion engine calculates the total order value after applying promotions on the cart items.
 
 ### Promotion
 
