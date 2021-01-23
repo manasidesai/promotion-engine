@@ -1,14 +1,14 @@
 # promotion-engine
 
-A spring boot application for a simple promotion engine. The promotion engine calculates the total order value after applying promotions on the cart items.
+This ia a spring boot application for the simple promotion engine. The promotion engine calculates the total order value after applying promotions on the cart items.
 
 ### Promotion
 
 Promotions are defined by implementing the Promotion interface. 
 
 Currently two promotion types are defined. 
-1. QuantityBasedSinglePromotion - It finds matching cart item from the cart and applies the promotional price on given quantity. 
-2. MixedTypePromotion - It finds all matching cart item from the cart. Applies the promotional price only when all promotional items found in the cart. 
+1. QuantityBasedSinglePromotion - It applies a promotional price on 'n' items of a SKU. 
+2. MixedTypePromotion - It applies a promotional price on SKU 1 & SKU 2
 
 Additional promotional classes can be added by implementing the base Promotion interface and defining their behaviour.
 
