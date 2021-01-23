@@ -11,6 +11,12 @@ import org.apache.log4j.Logger;
 import test.codingtest.engine.model.CheckoutItem;
 import test.codingtest.engine.model.Item;
 
+/**
+ * This is a mixed promotion class, implementing the Promotion interface
+ * It finds matching cart item from the cart and applies the promotional price for given quantity. 
+ * For remaining quantity, the non promotional price will be applied.
+ *
+ */
 public class MixedTypePromotion implements Promotion {
 
 	private final static Logger LOGGER = Logger.getLogger(MixedTypePromotion.class);
@@ -28,7 +34,8 @@ public class MixedTypePromotion implements Promotion {
 
 	
 	/**
-	 * Applies promotions on cart items which matches with all items of the MixedTypePromotion.items
+	 * It finds matching cart item from the cart and applies the promotional price for given quantity. 
+	 * For remaining quantity, the non promotional price will be applied.
 	 * Updates promotional and non promotional totals
 	 * Returns List<CheckoutItem> with promotional and non promotional totals set
 	 * 

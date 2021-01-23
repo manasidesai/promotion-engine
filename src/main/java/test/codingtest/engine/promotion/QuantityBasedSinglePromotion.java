@@ -11,6 +11,13 @@ import org.apache.log4j.Logger;
 import test.codingtest.engine.model.CheckoutItem;
 import test.codingtest.engine.model.Item;
 
+/**
+ * This is a single promotion class, implementing the Promotion interface
+ * It finds matching cart item from the cart and applies the promotional price for given quantity. 
+ * For remaining quantity, the non promotional price will be applied.
+ * 
+ *
+ */
 public class QuantityBasedSinglePromotion implements Promotion {
 
 	private final static Logger LOGGER = Logger.getLogger(QuantityBasedSinglePromotion.class);
@@ -28,8 +35,10 @@ public class QuantityBasedSinglePromotion implements Promotion {
 	
 	/**
 	 * Applies promotions on cart items which matches with the QuantityBasedSinglePromotion.item 
+	 * It finds matching cart item from the cart and applies the promotional price for given quantity. 
+	 * For remaining quantity, the non promotional price will be applied.
 	 * Updates promotional and non promotional totals
-	 * Returns CheckoutItem with promotional and non promotional totals set
+	 * Returns List<CheckoutItem> with promotional and non promotional totals set
 	 */
 	@Override
 	public List<CheckoutItem> applyPromotion(List<CheckoutItem> itemDetails) {
