@@ -52,6 +52,11 @@ public class PromotionEngineTests {
 	void test_getCartTotal_withdata_nopromo_scenario_A() {
 		
 		// Given
+		//1	* A	50
+		//1	* B	30
+		//1	* C	20
+		//Total		100
+		
 		List<Item> cartItems = new ArrayList<Item>();
 		cartItems.add(itemA);
 		cartItems.add(itemB);
@@ -64,6 +69,36 @@ public class PromotionEngineTests {
 		//verify
 		Mockito.verify(promotionConfig, Mockito.times(1)).getPromotionList();
 		
+	}
+	
+	@Test
+	void test_getCartTotal_withdata_singlepromo_scenario_B() {
+		
+		// Given
+		//5 * A		130 + 2*50
+		//5 * B		45 + 45 + 30
+		//1 * C		28
+		//Total		370
+		List<Item> cartItems = new ArrayList<Item>();		
+		cartItems.add(itemA);
+		cartItems.add(itemA);
+		cartItems.add(itemA);
+		cartItems.add(itemA);
+		cartItems.add(itemA);
+		cartItems.add(itemB);
+		cartItems.add(itemB);
+		cartItems.add(itemB);
+		cartItems.add(itemB);
+		cartItems.add(itemB);
+		cartItems.add(itemC);
+		Mockito.when(promotionConfig.getPromotionList()).thenReturn(getPromotionList());
+		
+		// Then
+		assertEquals(370.00, promotionEngine.getCartTotal(cartItems));	
+		
+		//verify
+		Mockito.verify(promotionConfig, Mockito.times(1)).getPromotionList();
+
 	}
 	
 	private List<Promotion> getPromotionList(){
