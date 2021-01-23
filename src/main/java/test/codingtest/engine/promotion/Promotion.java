@@ -12,7 +12,8 @@ public interface Promotion {
 	 * It applies promotions on matching cart items from the itemDetails
 	 * All promotion classes will apply promotional prices as per their behaviour
 
-	 * In future additional promotional classes can be added extending base Promotion interface 
+	 * Additional promotional classes can be added by implementing the base Promotion interface. 
+	 * 
 	 * @param itemDetails
 	 * @return
 	 */
