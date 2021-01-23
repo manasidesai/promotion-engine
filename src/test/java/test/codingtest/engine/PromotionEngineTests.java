@@ -101,6 +101,37 @@ public class PromotionEngineTests {
 
 	}
 	
+	@Test
+	void test_getCartTotal_withdata_mixedpromo_scenario_C() {
+	
+		// Given
+		//3	* A	130
+		//5	* B	45 + 45 + 1 * 30
+		//1	* C	-
+		//1	* D	30
+		//Total		280
+		List<Item> cartItems = new ArrayList<Item>();
+		cartItems.add(itemA);
+		
+		cartItems.add(itemA);
+		cartItems.add(itemA);
+		cartItems.add(itemB);
+		cartItems.add(itemB);
+		cartItems.add(itemB);
+		cartItems.add(itemB);
+		cartItems.add(itemB);
+		cartItems.add(itemC);
+		cartItems.add(itemD);
+		Mockito.when(promotionConfig.getPromotionList()).thenReturn(getPromotionList());
+		
+		// Then
+		assertEquals(280.00, promotionEngine.getCartTotal(cartItems));	
+		
+		//verify
+		Mockito.verify(promotionConfig, Mockito.times(1)).getPromotionList();
+
+	}
+	
 	private List<Promotion> getPromotionList(){
 		
 		List<Promotion> promotionList = new ArrayList<Promotion>();
