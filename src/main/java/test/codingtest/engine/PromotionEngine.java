@@ -15,10 +15,11 @@ import test.codingtest.engine.model.Item;
 import test.codingtest.engine.promotion.Promotion;
 
 /**
- * PromotionEngine class, calculates the bill total.
- * This class receives list of promotions from the configuration class promotionConfig 
+ * PromotionEngine class, calculates the total order value after applying promotions.
+ * 
+ * List of existing promotions are received from the configuration class PromotionConfig 
+ * 
  * For each promotion type it calls the applyPromotion() method and receives a list of checkout items with promotion/non promotional price applied 
- * It calculates total of all promotional and non promotional prices and returns.
  *
  */
 public class PromotionEngine {
@@ -34,12 +35,12 @@ public class PromotionEngine {
 	
 	/**
 	 * This method receives list of cart items.
-	 * It calculates count of the each cart item and saves it in the map.
-	 * Gets a list of promotions from the configuration class promotionConfig 
-	 * For each promotion type it calls the applyPromotion() method and receives a list of checkout items with promotion/non promotional prices applied 
-	 * It calculates total of all promotional and non promotional prices and returns the bill total.
+	 * 1.It calculates count of the each cart item and saves it in the map.
+	 * 2.Gets a list of promotions from the configuration class promotionConfig 
+	 * 3.For each promotion type it calls the applyPromotion() method and receives a list of checkout items with promotion/non promotional prices applied 
+	 * 4.It calculates total of all promotional and non promotional prices and returns the bill total.
 	 * @param cartItems
-	 * @return
+	 * @return bill total
 	 */
 	public Double getCartTotal(List<Item> cartItems){
 		double promoTotalPrice = 0.00;

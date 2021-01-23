@@ -12,7 +12,7 @@ import test.codingtest.engine.promotion.QuantityBasedSinglePromotion;
  * A configuration class to initialise list of promotions. 
  * 
  * As per scenarios provided in the coding test, 3 different promotion classes are initialised.
- * As per scenarios provided in the coding test, only 4 cart items are initialised
+ * As per scenarios provided in the coding test, only 4 SKU cart items are initialised
  *
  */
 public class PromotionConfig {

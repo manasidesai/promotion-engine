@@ -42,14 +42,14 @@ public class PromotionEngineTests {
 	}
 	
 	@Test
-	void test_getCartTotal_withoutdata() {
+	void testgetCartTotal_CartContainsNoItem() {
 		
-		assertEquals(0.00, promotionEngine.getCartTotal(Collections.EMPTY_LIST));	
+		assertEquals(0.00, promotionEngine.getCartTotal(Collections.emptyList()));	
 		
 	}
 
 	@Test
-	void test_getCartTotal_withdata_nopromo_scenario_A() {
+	void testgetCartTotal_CartContainsItem_Scenario_A() {
 		
 		// Given
 		//1	* A	50
@@ -72,7 +72,7 @@ public class PromotionEngineTests {
 	}
 	
 	@Test
-	void test_getCartTotal_withdata_singlepromo_scenario_B() {
+	void testgetCartTotal_CartContainsItem_Scenario_B() {
 		
 		// Given
 		//5 * A		130 + 2*50
@@ -102,7 +102,7 @@ public class PromotionEngineTests {
 	}
 	
 	@Test
-	void test_getCartTotal_withdata_mixedpromo_scenario_C() {
+	void testgetCartTotal_CartContainsItem_Scenario_C() {
 	
 		// Given
 		//3	* A	130

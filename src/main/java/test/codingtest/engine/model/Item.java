@@ -1,5 +1,8 @@
 package test.codingtest.engine.model;
 
+/**
+ * SKU Item
+ */
 public class Item {
 
 	private String id;

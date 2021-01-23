@@ -1,6 +1,8 @@
 package test.codingtest.engine.model;
 
-
+/**
+ * CheckoutItem is used to save promotional and non promotional prices of a item along with it's order quantity 
+ */
 public class CheckoutItem {
 	
 	private Item item;
